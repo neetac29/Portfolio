@@ -1,0 +1,16 @@
+# Ignore all node_modules and package-lock.json 
+node_modules/
+client/node_modules/
+client/package-lock.json/
+server/node_modules/
+server/package-lock.json/
+
+# Ignore environment files
+.env
+client/.env
+server/.env
+
+# Ignore build and logs
+dist/
+build/
+*.log
