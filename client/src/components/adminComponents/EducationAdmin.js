@@ -81,7 +81,7 @@ const EducationAdmin = () => {
 
       <div className="same-item">
         <div className="about-info">
-          {educationData.map((item) => (
+          {Array.isArray(educationData) && educationData.map((item) => (
             <div className="same-admin" key={item._id}>
               <div className="icons">
                 <Link to={`/editEducation/${item._id}`}>

@@ -81,7 +81,7 @@ const AboutAdmin = () => {
       </div>
 
       <div className="same-item">
-        {aboutData.map((item) => (
+        {Array.isArray(aboutData) && aboutData.map((item) => (
           <div className="about-info" key={item._id}>
             <div className="icons">
               <Link to={`/edit/${item._id}`}>

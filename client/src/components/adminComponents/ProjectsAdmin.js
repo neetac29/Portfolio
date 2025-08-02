@@ -184,7 +184,7 @@ const ProjectsAdmin = () => {
 
       <div className="same-item">
         <div className="about-info">
-          {projectData.map((item) => (
+          {Array.isArray(projectData) && projectData.map((item) => (
             <div className="projects-admin" key={item._id}>
               <div className="icons">
                 <Link to={`/editProject/${item._id}`}>

@@ -80,7 +80,7 @@ return(
 
         <div className="same-item">
             <div className="about-info">
-               {experienceData.map(item => (
+               {Array.isArray(experienceData) && experienceData.map(item => (
                  <div className="same-admin" key={item._id}>
                  <div className="icons">
                     <Link to={`/editExperience/${item._id}`}>

@@ -14,7 +14,7 @@ const Education = () => {
         <h2 className="title">Education</h2>
 
         <div className="education-center">
-          {education.map(item => (
+          {Array.isArray(education) &&  education.map(item => (
             <div className="single-education" key={item._id}>
             <p>{item.education}</p>
           </div>

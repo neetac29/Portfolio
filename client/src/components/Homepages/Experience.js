@@ -11,7 +11,7 @@ const Experience = () => {
       <h2 className="title">Experience</h2>
       <div className="experience">
         <div className="experience-center">
-          {experience.map((item) => (
+          {Array.isArray(experience) && experience.map((item) => (
             <div className="single-experience" key={item._id}>
               <p>{item.experience}</p>
             </div>

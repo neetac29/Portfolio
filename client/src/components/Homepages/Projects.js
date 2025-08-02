@@ -15,7 +15,7 @@ const Projects = () => {
       <div className="projects">
         <h2 className="title">Projects</h2>
         <div className="projects-center">
-          {project.map((item) => (
+          {Array.isArray(project) && project.map((item) => (
             <div className="single-project" key={item._id}>
               <div className="single-project-img">
                 <img src={item.image.url} alt="" />
