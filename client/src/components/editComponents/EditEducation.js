@@ -12,7 +12,7 @@ const EditEducation = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/education/${id}`)
+        axios.get(`/education/${id}`)
         .then(res => {
             console.log("Updated");
             setEducation(res.data.education)
@@ -33,7 +33,7 @@ const EditEducation = () => {
         e.preventDefault();
         const payload ={education};
 
-        axios.put(`http://localhost:4000/education/update/${id}`, payload)
+        axios.put(`/education/update/${id}`, payload)
         .then(res => {
             console.log("updated");
             setMessage(res.data.msg);

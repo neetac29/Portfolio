@@ -20,7 +20,7 @@ const Register = () => {
     const registerSubmit = async(e) => {
       e.preventDefault();
       try {
-        const res = await axios.post(`http://localhost:4000/user/register`, {
+        const res = await axios.post(`/user/register`, {
           name: user.name,
           email: user.email,
           password: user.password

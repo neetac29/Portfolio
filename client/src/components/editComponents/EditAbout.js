@@ -12,7 +12,7 @@ const EditAbout = (props) => {
   // getting specific id
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/about/${id}`)
+      .get(`/about/${id}`)
       .then((res) => {
         setAbout(res.data.about);
       })
@@ -29,7 +29,7 @@ const EditAbout = (props) => {
   const updateAbout = (e) => {
     e.preventDefault();
     const payload = {about};
-    axios.put(`http://localhost:4000/about/update/${id}`, payload)
+    axios.put(`/about/update/${id}`, payload)
     .then(res =>{
         setMessage(res.data.msg);
 

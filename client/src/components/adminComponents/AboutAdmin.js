@@ -9,7 +9,7 @@ const AboutAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   const fetchData = async () => {
-    const result = await axios.get("http://localhost:4000/about");
+    const result = await axios.get("/about");
     // console.log("result for about admin::", result.data);
     setAboutData(result.data);
   };
@@ -33,7 +33,7 @@ const AboutAdmin = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/about", { about })
+      .post("/about", { about })
       .then((res) => {
         console.log("Added");
         setAbout("");
@@ -46,7 +46,7 @@ const AboutAdmin = () => {
   const deleteAbout = (id) => {
     // delete from backend
     axios
-      .delete(`http://localhost:4000/about/${id}`)
+      .delete(`/about/${id}`)
       .then((res) => {
         console.log("Deleted about");
         setMessageCond(true);

@@ -45,12 +45,12 @@ export const DataProvider = ({children}) => {
     //Fetching data
     const fetchData = async () => {
         // fetching about api
-        const resultAbout = await axios.get('http://localhost:4000/about');
+        const resultAbout = await axios.get('/about');
         // console.log("result::for about:", resultAbout.data);
         setAbout(resultAbout.data);
 
         // fetching education api
-        const resultEducation = await axios.get('http://localhost:4000/education');
+        const resultEducation = await axios.get('/education');
         // console.log("result::for education:", resultEducation.data);
         setEducation(resultEducation.data);
 
