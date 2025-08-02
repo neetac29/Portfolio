@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import api from '../utils/api'; // <-- import your custom axios instance
+import api from '../../utils/api'; // <-- import your custom axios instance
 
 export const DataContext = createContext();
 
