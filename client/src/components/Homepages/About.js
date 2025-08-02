@@ -13,7 +13,7 @@ const About = () => {
 
         {/* about */}
 
-        {about.map((item) => (
+        {Array.isArray(about) && about.map((item) => (
           <div className="about-info" key={item._id}>
             <p>{item.about}</p>
           </div>
