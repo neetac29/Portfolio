@@ -4,6 +4,7 @@ import './Login.css';
 import Register from "./Register";
 import axios from 'axios';
 import { DataContext } from "../context/GlobalContext";
+import API_BASE_URL from "../../config";
 
 const Login = () => {
 
@@ -28,7 +29,7 @@ const Login = () => {
   const loginSubmit = async(e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`/user/login`, {
+      const res = await axios.post(`${API_BASE_URL}/user/login`, {
         email: user.email,
         password: user.password
       })
