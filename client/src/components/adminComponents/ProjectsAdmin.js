@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import API_BASE_URL from "../../config";
 
 const initialState = {
   product_id: "",
@@ -15,6 +16,7 @@ const ProjectsAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
   const [projectData, setProjectData] = useState([]);
   const fileInputRef = useRef();
+
 
   // upload image functionality
   const handleUpload = async (e) => {
@@ -35,7 +37,7 @@ const ProjectsAdmin = () => {
       let formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post("/upload", formData, {
+      const res = await axios.post(`${API_BASE_URL}/upload`, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
       setImages(res.data);
@@ -47,7 +49,7 @@ const ProjectsAdmin = () => {
   // delete image
   const handleDestroy = async () => {
     try {
-      await axios.post("/destroy", { public_id: images.public_id });
+      await axios.post(`${API_BASE_URL}/destroy`, { public_id: images.public_id });
       setImages(false);
       fileInputRef.current.value = ""; // 🧹 clears the file input field
     } catch (err) {
@@ -67,7 +69,7 @@ const ProjectsAdmin = () => {
     e.preventDefault();
 
     try {
-      axios.post("/project/", { ...product, image: images }).then((res) => {
+      axios.post(`${API_BASE_URL}/project/`, { ...product, image: images }).then((res) => {
 
         setProducts(initialState);
         setImages(false);
@@ -86,7 +88,7 @@ const ProjectsAdmin = () => {
   // fetching the data
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/project`);
+      const res = await axios.get(`${API_BASE_URL}/project`);
       setProjectData(res.data);
       //   console.log(res.data)
     } catch (err) {
@@ -102,7 +104,7 @@ const ProjectsAdmin = () => {
   const deleteProject = (id) => {
     // delete from backend
     axios
-      .delete(`/project/${id}`)
+      .delete(`${API_BASE_URL}/project/${id}`)
       .then((res) => {
         setMessage(res.data.msg);
         setMessageCond(true);

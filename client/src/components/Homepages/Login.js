@@ -33,7 +33,7 @@ const Login = () => {
         email: user.email,
         password: user.password
       })
-
+      
       setUser({name: '', email: '', password: ''});
       
       localStorage.setItem('tokenStore', res.data.token);

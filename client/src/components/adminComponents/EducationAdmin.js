@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_BASE_URL from "../../config";
 
 const EducationAdmin = () => {
   const [education, setEducation] = useState("");
@@ -11,7 +12,7 @@ const EducationAdmin = () => {
    // fetching education data
   const fetchData = async () => {
     try {
-      const result = await axios.get("/education");
+      const result = await axios.get(`${API_BASE_URL}/education`);
       setEducationData(result.data);
     } catch (err) {
       console.log(err);
@@ -32,7 +33,7 @@ const EducationAdmin = () => {
     e.preventDefault();
     const payload = {education};
    
-    axios.post('/education', payload)
+    axios.post(`${API_BASE_URL}/education`, payload)
     .then(res => {
       console.log("Added Education");
       setEducation('');
@@ -47,7 +48,7 @@ const EducationAdmin = () => {
   // delete education
   const deleteEducation = (id) => {
     // delete from backend
-    axios.delete(`/education/${id}`)
+    axios.delete(`${API_BASE_URL}/education/${id}`)
     .then(res => {
       setMessageCond(true);
       setMessage(`${res.data.msg}`);

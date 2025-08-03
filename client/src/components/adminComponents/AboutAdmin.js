@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from '../../config';
+
 
 const AboutAdmin = () => {
   const [about, setAbout] = useState("");
@@ -9,7 +11,7 @@ const AboutAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   const fetchData = async () => {
-    const result = await axios.get("/about");
+    const result = await axios.get(`${API_BASE_URL}/about`);
     // console.log("result for about admin::", result.data);
     setAboutData(result.data);
   };
@@ -33,7 +35,7 @@ const AboutAdmin = () => {
     e.preventDefault();
 
     axios
-      .post("/about", { about })
+      .post( `${API_BASE_URL}/about`, { about })
       .then((res) => {
         console.log("Added");
         setAbout("");
@@ -46,7 +48,7 @@ const AboutAdmin = () => {
   const deleteAbout = (id) => {
     // delete from backend
     axios
-      .delete(`/about/${id}`)
+      .delete(`${API_BASE_URL}/about/${id}`)
       .then((res) => {
         console.log("Deleted about");
         setMessageCond(true);

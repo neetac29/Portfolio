@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './admin.css';
 import axios from 'axios';
-
+import API_BASE_URL from '../../config';
 
 const ExperienceAdmin = () => {
     const [experience, setExperience] = useState('');
@@ -13,7 +13,7 @@ const ExperienceAdmin = () => {
 
     // fetch experience data
     const fetchData = async() => {
-        axios.get('/experience')
+        axios.get(`${API_BASE_URL}/experience`)
         .then(res => {
             setExperienceData(res.data);
         })
@@ -36,7 +36,7 @@ const ExperienceAdmin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('/experience', {experience})
+        axios.post(`${API_BASE_URL}/experience`, {experience})
         .then(res => {
            setExperience('');
            fetchData();
@@ -51,7 +51,7 @@ const ExperienceAdmin = () => {
     // delete experince 
     const deleteExperince = (id) => {
 
-        axios.delete(`/experience/${id}`)
+        axios.delete(`${API_BASE_URL}/experience/${id}`)
         .then(res => {
             setMessageCond(true);
             setMessage(res.data.msg);
