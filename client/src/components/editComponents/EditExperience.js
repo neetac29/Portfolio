@@ -56,7 +56,7 @@ const EditExperience = () => {
                             <h3 className="updated"> {message} </h3>
                             <h2>Experience Component</h2>
                             <label htmlFor="text" >Experience</label>
-                            <input type='text' value={experience} onChange={onchangeExperience}/>
+                            <input type='text' id='experience' name='experience' value={experience} onChange={onchangeExperience}/>
                             <div className="btns">
                                 <button type='submit'>Update item</button>
                                 <Link to='/admin'><button className='cancel-btn'>Cancel</button></Link>

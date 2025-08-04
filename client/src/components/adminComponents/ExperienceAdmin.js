@@ -80,7 +80,7 @@ return(
             <form onSubmit={handleSubmit}>
                 <h4>Experience Component</h4>
                 <label htmlFor='text'>Experience</label>
-                <input type="text" value={experience} onChange={onchangeExperience}/>
+                <input type="text" id='experience' name='experience' value={experience} onChange={onchangeExperience}/>
                 <button type='submit'>Add item</button>
             </form>
         </div>

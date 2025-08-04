@@ -70,6 +70,8 @@ const Contact = () => {
                 <input
                   type="text"
                   placeholder="import name..."
+                  id="name"
+                  name="name"
                   required
                   value={name}
                   onChange={handleNameChange}
@@ -80,6 +82,8 @@ const Contact = () => {
                   type="email"
                   placeholder="import email..."
                   required
+                  id="email"
+                  name="email"
                   value={email}
                   onChange={handleEmailChange}
                 />

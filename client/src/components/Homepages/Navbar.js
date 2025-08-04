@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/my_logo.jpeg";
 import { scroller } from "react-scroll";
 import { DataContext } from "../context/GlobalContext";
@@ -11,14 +11,27 @@ const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  // for scrolling navbar
+  const navigate = useNavigate();
+
   const scrollToElement = (element) => {
-    scroller.scrollTo(element, {
-      duration: 800,
-      delay: 50,
-      smooth: true,
-      offset: -100,
-    });
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scroller.scrollTo(element, {
+          duration: 800,
+          delay: 0,
+          smooth: true,
+          offset: -100,
+        });
+      }, 100);
+    } else {
+      scroller.scrollTo(element, {
+        duration: 800,
+        delay: 0,
+        smooth: true,
+        offset: -100,
+      });
+    }
   };
 
   // for toggle
@@ -77,14 +90,12 @@ const Navbar = () => {
             <li onClick={() => scrollToElement("Contact")}>
               <Link to="/">Contact</Link>
             </li>
-            {/* <li ><Link to='/admin'>Admin</Link></li> */}
-            {/* <li ><Link to="/login">Login</Link></li> */}
+
             <li className={isLogin ? "" : "adminLi"}>
               <Link to={isLogin ? "/admin" : "/"}>
                 <div className="admin">Admin</div>
               </Link>
             </li>
-            {/* <li onClick={logOutSubmit} ><Link to={isLogin? '/' : '/login'}>{isLogin? 'Login' : 'Logout'}</Link></li> */}
             {isLogin ? (
               <li onClick={logOutSubmit}>
                 <Link to="/">Logout</Link>

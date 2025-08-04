@@ -60,11 +60,8 @@ function App() {
         />
 
         {/* Admin & Edit Routes */}
-        <Route
-          path="/login"
-          element={isLogin ? <Admin /> : <Login setIsLogin={setIsLogin} />}
-        />
-        <Route path="/admin" element={isLogin ? <Admin /> : <Login />} />
+        <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/edit/:id" element={<EditAbout />} />
         <Route path="/editEducation/:id" element={<EditEducation />} />
         <Route path="/editProject/:id" element={<EditProjects />} />

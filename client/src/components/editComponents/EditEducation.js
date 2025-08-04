@@ -62,7 +62,7 @@ return(
                         </h3>
                         <h4>Education Component</h4>
                         <label htmlFor='text'>Education</label>
-                        <input type='text' value={education} onChange={onchangeEducation}/>
+                        <input type='text' id='education' name='education' value={education} onChange={onchangeEducation}/>
                         <div className="btns">
                             <button type='submit'>Update item</button>
                             <Link to='/admin'><button className='cancel-btn'>Cancel</button></Link>

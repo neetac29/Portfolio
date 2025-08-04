@@ -54,6 +54,7 @@ return(
                 type="text"
                 placeholder="import name here..."
                 name="name"
+                id='name'
                 required
                 value={user.name}
                 onChange={onchangeInput}
@@ -64,6 +65,7 @@ return(
                 type="email"
                 placeholder="import email here..."
                 name="email"
+                id='email'
                 required
                 value={user.email}
                 onChange={onchangeInput}
@@ -74,6 +76,7 @@ return(
                 type="password"
                 placeholder="import password here..."
                 name="password"
+                id='password'
                 required
                 value={user.password}
                 onChange={onchangeInput}
