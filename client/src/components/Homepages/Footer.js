@@ -32,7 +32,7 @@ const Footer = () => {
 
   // clear local storage - enable login or should not have admin access
   const logOutSubmit = () => {
-    localStorage.clear();
+    localStorage.removeItem('tokenStore');
     setIsLogin(false);
   };
 

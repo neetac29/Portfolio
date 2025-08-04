@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import api from '../../utils/api'; // <-- import your custom axios instance
+import {jwtDecode} from 'jwt-decode';
 
 export const DataContext = createContext();
 
@@ -13,22 +14,35 @@ export const DataProvider = ({ children }) => {
 
   const checkLogin = async () => {
     const token = localStorage.getItem('tokenStore');
-
+  
     if (token) {
+      const decoded = jwtDecode(token);
+      const expiryTime = decoded.exp * 1000; // convert to ms
+  
+      if (Date.now() > expiryTime) {
+        console.log("Token expired. Removing from localStorage.");
+        localStorage.removeItem('tokenStore');
+        setIsLogin(false);
+        return;
+      }
+  
       try {
         const verified = await api.get('/user/verify', {
-          headers: {
-            Authorization: token
-          }
+          headers: { Authorization: token }
         });
-
-        setIsLogin(verified.data);
-
+  
+        // setIsLogin(verified.data);
         if (!verified.data) {
-          localStorage.clear();
+          console.log("Token invalid. Removing from localStorage.");
+          localStorage.removeItem('tokenStore');
+          setIsLogin(false);
+          return;
         }
+        setIsLogin(true);
       } catch (err) {
         console.error("Login verification failed:", err);
+        localStorage.removeItem('tokenStore');
+        setIsLogin(false);
       }
     }
   };

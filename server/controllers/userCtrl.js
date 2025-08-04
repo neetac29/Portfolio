@@ -48,7 +48,7 @@ const jwt = require('jsonwebtoken');
             name: user.name
            }
 
-           const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: "1d"});
+           const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: "1h"});
            res.json({token});
 
         } catch (err) {
