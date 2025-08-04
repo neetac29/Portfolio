@@ -1,15 +1,20 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './admin.css';
 import axios from 'axios';
 import API_BASE_URL from '../../config';
+import { DataContext } from '../context/GlobalContext';
 
 const ExperienceAdmin = () => {
     const [experience, setExperience] = useState('');
     const [experienceData, setExperienceData] = useState([]);
     const [message, setMessage] = useState('');
     const [messageCond, setMessageCond] = useState(false);
+
+    const state = useContext(DataContext);
+    const [dataUpdated, setDataUpdated] = state.dataUpdated;
+
 
     // fetch experience data
     const fetchData = async() => {
@@ -40,6 +45,7 @@ const ExperienceAdmin = () => {
         .then(res => {
            setExperience('');
            fetchData();
+           setDataUpdated(true)
         })
         .catch(err => {
             console.log(err);
@@ -55,7 +61,8 @@ const ExperienceAdmin = () => {
         .then(res => {
             setMessageCond(true);
             setMessage(res.data.msg);
-
+            setDataUpdated(true);
+            
             setTimeout(() => {
                 setMessage('');
                 setMessageCond(false);

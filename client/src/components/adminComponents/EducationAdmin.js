@@ -1,13 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API_BASE_URL from "../../config";
+import { DataContext } from "../context/GlobalContext";
 
 const EducationAdmin = () => {
   const [education, setEducation] = useState("");
   const [educationData, setEducationData] = useState([]);
   const [message, setMessage] = useState("");
   const [messageCond, setMessageCond] = useState(false);
+  
+  const state = useContext(DataContext);
+    const [dataUpdated, setDataUpdated] = state.dataUpdated;
+  
 
    // fetching education data
   const fetchData = async () => {
@@ -38,6 +43,7 @@ const EducationAdmin = () => {
       console.log("Added Education");
       setEducation('');
       fetchData();
+      setDataUpdated(true);
     })
     .catch(err => {
       console.log(err);
@@ -51,8 +57,8 @@ const EducationAdmin = () => {
     axios.delete(`${API_BASE_URL}/education/${id}`)
     .then(res => {
       setMessageCond(true);
-      setMessage(`${res.data.msg}`);
-
+      setMessage(res.data.msg);
+      setDataUpdated(true);
       setTimeout(() => {
         setMessage('');
         setMessageCond(false)

@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
   const [experience, setExperience] = useState([]);
   const [project, setProject] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
+  const [dataUpdated, setDataUpdated] = useState(false);
 
   const checkLogin = async () => {
     const token = localStorage.getItem('tokenStore');
@@ -59,7 +60,8 @@ export const DataProvider = ({ children }) => {
     education: [education, setEducation],
     experience: [experience, setExperience],
     project: [project, setProject],
-    isLogin: [isLogin, setIsLogin]
+    isLogin: [isLogin, setIsLogin],
+    dataUpdated: [dataUpdated, setDataUpdated]
   };
 
   return <DataContext.Provider value={state}>{children}</DataContext.Provider>;

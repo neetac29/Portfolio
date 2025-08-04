@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from '../../config';
+import { DataContext } from "../context/GlobalContext";
 
 
 const AboutAdmin = () => {
@@ -9,6 +10,11 @@ const AboutAdmin = () => {
   const [aboutData, setAboutData] = useState([]);
   const [message, setMessage] = useState("");
   const [messageCond, setMessageCond] = useState(false);
+
+  const state = useContext(DataContext);
+  const [dataUpdated, setDataUpdated] = state.dataUpdated;
+
+  
 
   const fetchData = async () => {
     const result = await axios.get(`${API_BASE_URL}/about`);
@@ -40,6 +46,7 @@ const AboutAdmin = () => {
         console.log("Added");
         setAbout("");
         fetchData();
+        setDataUpdated(true);
       })
       .catch((err) => console.log(err));
   };
@@ -52,8 +59,8 @@ const AboutAdmin = () => {
       .then((res) => {
         console.log("Deleted about");
         setMessageCond(true);
-        setMessage(`${res.data.msg}`);
-
+        setMessage(res.data.msg);
+        setDataUpdated(true);
         setTimeout(() => {
           setMessage('');
           setMessageCond(false);

@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API_BASE_URL from "../../config";
+import { DataContext } from "../context/GlobalContext";
 
 const initialState = {
   product_id: "",
@@ -17,6 +18,8 @@ const ProjectsAdmin = () => {
   const [projectData, setProjectData] = useState([]);
   const fileInputRef = useRef();
 
+  const state = useContext(DataContext);
+  const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // upload image functionality
   const handleUpload = async (e) => {
@@ -68,12 +71,20 @@ const ProjectsAdmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!images) {
+      alert("Please upload an image before submitting");
+      return;
+    }
+
     try {
-      axios.post(`${API_BASE_URL}/project/`, { ...product, image: images }).then((res) => {
+      const payload = { ...product, image: images };
+      axios.post(`${API_BASE_URL}/project/`, payload).then((res) => {
 
         setProducts(initialState);
         setImages(false);
         fetchData();
+        setDataUpdated(true);
+
       });
     } catch (err) {
       console.log(err);
@@ -108,6 +119,7 @@ const ProjectsAdmin = () => {
       .then((res) => {
         setMessage(res.data.msg);
         setMessageCond(true);
+        setDataUpdated(true);
 
         setTimeout(() => {
           setMessageCond(false);

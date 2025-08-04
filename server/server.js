@@ -76,3 +76,12 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=> {
     console.log(`server listening on port: ${PORT}`);
 } ) // This starts your Express server and tells it to listen for incoming requests on the specified port (PORT).
+
+
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+    next();
+  });
