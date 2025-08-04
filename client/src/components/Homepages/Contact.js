@@ -3,6 +3,7 @@ import "./contact.css";
 import BackImg from "../../images/im4.jpg";
 import load1 from "../../images/load2.gif";
 import axios from "axios";
+import API_BASE_URL from "../../config";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -36,7 +37,7 @@ const handleSubmitForm = (e) => {
 
     setBoolean(true);
 
-    axios.post(`/contact`, data)
+    axios.post(`${API_BASE_URL}/contact`, data)
     .then(res => {
         console.log("Contact added");
         setBanner(res.data.msg);

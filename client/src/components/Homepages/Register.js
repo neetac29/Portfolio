@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_BASE_URL from '../../config';
 
 const Register = () => {
 
@@ -20,7 +21,7 @@ const Register = () => {
     const registerSubmit = async(e) => {
       e.preventDefault();
       try {
-        const res = await axios.post(`/user/register`, {
+        const res = await axios.post(`${API_BASE_URL}/user/register`, {
           name: user.name,
           email: user.email,
           password: user.password

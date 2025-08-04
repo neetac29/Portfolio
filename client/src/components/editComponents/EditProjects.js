@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import API_BASE_URL from "../../config";
 
 const initialState = {
   product_id: "",
@@ -20,7 +21,7 @@ const EditProjects = () => {
   // fetching project by id
 
   useEffect(() => {
-    axios.get(`/project/${id}`)
+    axios.get(`${API_BASE_URL}/project/${id}`)
         .then(res => {
             console.log("res project:::", res.data);
             
@@ -60,7 +61,7 @@ const EditProjects = () => {
       let formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post("/upload", formData, {
+      const res = await axios.post(`${API_BASE_URL}/upload`, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
       setImages(res.data);
@@ -72,7 +73,7 @@ const EditProjects = () => {
   // delete image
   const handleDestroy = async () => {
     try {
-      await axios.post("/destroy", { public_id: images.public_id });
+      await axios.post(`${API_BASE_URL}/destroy`, { public_id: images.public_id });
       setImages(false);
       fileInputRef.current.value = ""; // 🧹 clears the file input field
     } catch (err) {
@@ -91,7 +92,7 @@ const EditProjects = () => {
     e.preventDefault();
 
     axios
-      .put(`/project/update/${id}`, { ...product, image: images })
+      .put(`${API_BASE_URL}/project/update/${id}`, { ...product, image: images })
       .then((res) => {
         console.log("updated", res.data);
         setMessage(res.data.msg);

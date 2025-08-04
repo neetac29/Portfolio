@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
+import API_BASE_URL from '../../config';
 
 const EditExperience = () => {
     const [experience, setExperience] = useState('');
@@ -11,7 +11,7 @@ const EditExperience = () => {
 
 
     useEffect(() => {
-        axios.get(`/experience/${id}`)
+        axios.get(`${API_BASE_URL}/experience/${id}`)
         .then(res => {
             
             setExperience(res.data.experience);
@@ -30,7 +30,7 @@ const EditExperience = () => {
     // update experince 
     const updateExperience = (e) => {
         e.preventDefault();
-        axios.put(`/experience/update/${id}`, {experience})
+        axios.put(`${API_BASE_URL}/experience/update/${id}`, {experience})
         .then(res => {
             console.log('updated');
             setMessage(res.data.msg);

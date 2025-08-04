@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
+import API_BASE_URL from '../../config';
 
 
 
@@ -12,7 +12,7 @@ const EditEducation = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        axios.get(`/education/${id}`)
+        axios.get(`${API_BASE_URL}/education/${id}`)
         .then(res => {
             console.log("Updated");
             setEducation(res.data.education)
@@ -33,7 +33,7 @@ const EditEducation = () => {
         e.preventDefault();
         const payload ={education};
 
-        axios.put(`/education/update/${id}`, payload)
+        axios.put(`${API_BASE_URL}/education/update/${id}`, payload)
         .then(res => {
             console.log("updated");
             setMessage(res.data.msg);
