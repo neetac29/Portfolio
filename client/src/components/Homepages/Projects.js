@@ -38,26 +38,28 @@ const Projects = () => {
   }, [dataUpdated]);
 
   return (
-      <div className="main-container">
-        <div className="projects">
-          <h2 className="title">Projects</h2>
-          <div className="projects-center">
-            {Array.isArray(project) &&
-              project.map((item) => (
-                <div className="single-project" key={item._id}>
+    <div className="main-container">
+      <div className="projects">
+        <h2 className="title">Projects</h2>
+        <div className="projects-center">
+          {Array.isArray(project) &&
+            project.map((item) => (
+              <div className="single-project" key={item._id}>
+                {item.image?.url && (
                   <div className="single-project-img">
-                    <img src={item.image?.url} alt="" />
+                    <img src={item.image.url} alt="" />
                   </div>
+                )}
 
-                  <div className="single-project-info">
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
+                <div className="single-project-info">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
-              ))}
-          </div>
+              </div>
+            ))}
         </div>
       </div>
+    </div>
   );
 };
 

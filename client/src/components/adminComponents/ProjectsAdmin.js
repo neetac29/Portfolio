@@ -52,7 +52,9 @@ const ProjectsAdmin = () => {
   // delete image
   const handleDestroy = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/destroy`, { public_id: images.public_id });
+      await axios.post(`${API_BASE_URL}/destroy`, {
+        public_id: images.public_id,
+      });
       setImages(false);
       fileInputRef.current.value = ""; // 🧹 clears the file input field
     } catch (err) {
@@ -71,24 +73,19 @@ const ProjectsAdmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!images) {
-      alert("Please upload an image before submitting");
-      return;
-    }
-
     try {
-      const payload = { ...product, image: images };
+      const payload = { ...product };
+      if (images) {
+        payload.image = images;
+      }
       axios.post(`${API_BASE_URL}/project/`, payload).then((res) => {
-
         setProducts(initialState);
         setImages(false);
         fetchData();
         setDataUpdated(true);
-
       });
     } catch (err) {
       console.log(err);
-
     }
   };
 
@@ -198,42 +195,45 @@ const ProjectsAdmin = () => {
 
       <div className="same-item">
         <div className="about-info">
-          {Array.isArray(projectData) && projectData.map((item) => (
-            <div className="projects-admin" key={item._id}>
-              <div className="icons">
-                <Link to={`/editProject/${item._id}`}>
-                  <i className="fas fa-edit"></i>
-                </Link>
-                <i
-                  className="fas fa-trash"
-                  onClick={() => deleteProject(item._id)}
-                ></i>
-              </div>
-
-              <div className="single-project">
-                <div className="single-project-img">
-                  <img src={item.image?.url} alt="" />
+          {Array.isArray(projectData) &&
+            projectData.map((item) => (
+              <div className="projects-admin" key={item._id}>
+                <div className="icons">
+                  <Link to={`/editProject/${item._id}`}>
+                    <i className="fas fa-edit"></i>
+                  </Link>
+                  <i
+                    className="fas fa-trash"
+                    onClick={() => deleteProject(item._id)}
+                  ></i>
                 </div>
 
-                <div className="single-project-info">
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              </div>
+                <div className="single-project">
+                  {item.image?.url && (
+                    <div className="single-project-img">
+                      <img src={item.image.url} alt="" />
+                    </div>
+                  )}
 
-              {message && (
-                <h3
-                  className={
-                    messageCond
-                      ? "new-delete item-delete-tab"
-                      : "item-delete-tab"
-                  }
-                >
-                  {message}
-                </h3>
-              )}
-            </div>
-          ))}
+                  <div className="single-project-info">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+
+                {message && (
+                  <h3
+                    className={
+                      messageCond
+                        ? "new-delete item-delete-tab"
+                        : "item-delete-tab"
+                    }
+                  >
+                    {message}
+                  </h3>
+                )}
+              </div>
+            ))}
         </div>
       </div>
     </div>

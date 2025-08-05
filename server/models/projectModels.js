@@ -16,7 +16,7 @@ const projectSchema = mongoose.Schema({
     },
     image: {
         type: Object,
-        required: true
+        required: false
     },
 
 });

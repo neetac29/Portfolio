@@ -16,29 +16,29 @@ const EditProjects = () => {
   const [imageFileName, setImageFileName] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
-  const fileInputRef = useRef()
+  const fileInputRef = useRef();
 
   // fetching project by id
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/project/${id}`)
-        .then(res => {
-            console.log("res project:::", res.data);
-            
-          setProducts({
-            product_id: res.data.product_id,
-            title: res.data.title,
-            description: res.data.description,
-          });
+    axios
+      .get(`${API_BASE_URL}/project/${id}`)
+      .then((res) => {
+        console.log("res project:::", res.data);
 
-          // if (res.data.image) {
-          //   setImages(res.data.image);
-          // }
-        })
-        .catch(err => {
-            console.log(err);
-            
-        })
+        setProducts({
+          product_id: res.data.product_id,
+          title: res.data.title,
+          description: res.data.description,
+        });
+
+        // if (res.data.image) {
+        //   setImages(res.data.image);
+        // }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   // upload image functionality
@@ -73,7 +73,9 @@ const EditProjects = () => {
   // delete image
   const handleDestroy = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/destroy`, { public_id: images.public_id });
+      await axios.post(`${API_BASE_URL}/destroy`, {
+        public_id: images.public_id,
+      });
       setImages(false);
       fileInputRef.current.value = ""; // 🧹 clears the file input field
     } catch (err) {
@@ -91,8 +93,13 @@ const EditProjects = () => {
   const updateProject = (e) => {
     e.preventDefault();
 
+    const payload = { ...product };
+    if (images) {
+      payload.image = images;
+    }
+
     axios
-      .put(`${API_BASE_URL}/project/update/${id}`, { ...product, image: images })
+      .put(`${API_BASE_URL}/project/update/${id}`, payload)
       .then((res) => {
         console.log("updated", res.data);
         setMessage(res.data.msg);
@@ -101,10 +108,10 @@ const EditProjects = () => {
         console.log(err);
       });
 
-      setProducts(initialState);
-      setTimeout(() => {
-        navigate('/admin');
-      }, 1000);
+    setProducts(initialState);
+    setTimeout(() => {
+      navigate("/admin");
+    }, 1000);
   };
 
   const styleUpload = {
@@ -139,11 +146,7 @@ const EditProjects = () => {
                 required
               />
 
-              <label
-                htmlFor="text"
-              >
-                Description
-              </label>
+              <label htmlFor="text">Description</label>
               <textarea
                 type="text"
                 name="description"

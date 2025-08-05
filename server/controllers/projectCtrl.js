@@ -16,9 +16,9 @@ exports.addProject = async (req, res) => {
         console.log("REQ BODY", req.body);  // TEMP LOGGING
         const {product_id, title, description, image} = req.body;
 
-        if (!product_id || !title || !description || !image) {
-            return res.status(400).json({ msg: 'All fields are required' });
-        }
+        if (!product_id || !title || !description) {
+            return res.status(400).json({ msg: 'Product ID, Title and Description are required' });
+          }
 
         const newProject = new projectSchema({
             product_id,
