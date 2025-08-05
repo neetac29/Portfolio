@@ -37,27 +37,13 @@ const CustomTypewriter = () => {
   }, [msgIndex, charIndex]);
 
   return (
-    <textarea
-      rows="10"
-      cols="80"
-      value={displayedText}
-      readOnly
-      style={{
-        fontSize: "20px",
-        padding: "12px",
-        whiteSpace: "pre-line",
-        backgroundColor: "transparent",
-        outline: "none",
-        border: "none",
-        color: "rgb(241,240,240)",
-        letterSpacing: "0.1rem",
-        fontStyle: "italic",
-        textShadow:
-          "1px 1px 2px black, 0 0 1em rgb(21,164,221), 0 0 0.2em rgb(17,17,17)",
-        marginTop: "70%",
-        alignContent:"center"
-      }}
-    />
+      <textarea
+        rows="10"
+        cols="80"
+        value={displayedText}
+        className="typewriter-box"
+        readOnly
+      />
   );
 };
 

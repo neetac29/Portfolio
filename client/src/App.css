@@ -512,3 +512,52 @@ line-height: 1.5;
  }
 
 /* ..........end of Footer................ */
+
+
+
+
+.typewriter-box {
+  font-size: 20px;
+  padding: 12px;
+  white-space: pre-line;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: rgb(241, 240, 240);
+  letter-spacing: 0.1rem;
+  font-style: italic;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em rgb(21, 164, 221),
+    0 0 0.2em rgb(17, 17, 17);
+  margin-top: 85%;
+ 
+}
+
+
+
+/* Responsive for mobile */
+@media screen and (min-width:530px){
+  .typewriter-box{
+     max-width: 400px;
+     margin-left: -50%;
+  }
+  
+  
+  }
+@media screen and (min-width:664px){
+  .typewriter-box{
+     max-width: 600px;
+     margin-left: -50%;
+  }
+  
+  
+  }
+  
+  
+  @media screen and (min-width:960px){
+    .typewriter-box{
+      margin-left: 50%;
+    }
+    
+   }
