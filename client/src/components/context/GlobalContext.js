@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import api from '../../utils/api'; // <-- import your custom axios instance
-import {jwtDecode} from 'jwt-decode';
+import axios from 'axios';
+
 
 export const DataContext = createContext();
 
@@ -12,40 +13,27 @@ export const DataProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [dataUpdated, setDataUpdated] = useState(false);
 
-  const checkLogin = async () => {
-    const token = localStorage.getItem('tokenStore');
-  
-    if (token) {
-      const decoded = jwtDecode(token);
-      const expiryTime = decoded.exp * 1000; // convert to ms
-  
-      if (Date.now() > expiryTime) {
-        console.log("Token expired. Removing from localStorage.");
-        localStorage.removeItem('tokenStore');
-        setIsLogin(false);
-        return;
-      }
-  
-      try {
-        const verified = await api.get('/user/verify', {
-          headers: { Authorization: token }
-        });
-  
-        // setIsLogin(verified.data);
-        if (!verified.data) {
-          console.log("Token invalid. Removing from localStorage.");
-          localStorage.removeItem('tokenStore');
+// checking token login
+const checkLogin = async() => {
+  const token = localStorage.getItem('tokenStore');
+
+  if(token) {
+      const verified = await axios.get(`/user/verify`, {
+          headers: {
+              Authorization: token
+          }
+      })
+      console.log("verified:::", verified);
+      setIsLogin(verified.data);
+
+      if(verified.data === false) {
+          return localStorage.clear();
+      } else {
           setIsLogin(false);
-          return;
-        }
-        setIsLogin(true);
-      } catch (err) {
-        console.error("Login verification failed:", err);
-        localStorage.removeItem('tokenStore');
-        setIsLogin(false);
       }
-    }
-  };
+      
+  }
+}
 
   const fetchData = async () => {
     try {
