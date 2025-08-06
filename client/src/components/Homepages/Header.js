@@ -113,7 +113,7 @@ const Header = () => {
             {/* single info */}
             <div className="info">
               <label htmlFor="email">Email:</label>
-              <h4>neetac@gmail.com</h4>
+              <h4>neetapanditchavan29@gmail.com</h4>
             </div>
 
           </div>
