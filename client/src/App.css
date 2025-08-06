@@ -105,7 +105,7 @@ a{
 border:1px solid lightgray;
 margin:5px 0;
 padding: 5px;
-/* letter-spacing: 0.1rem; */
+letter-spacing: 0.1rem;
 font-style: 16px;
 width: 100%;
 
@@ -117,12 +117,24 @@ width: 100%;
 }
 
 .personalInfo-details .info h4{
+  word-break: break-word; 
+  overflow-wrap: break-word;
   font-style: italic;
   color:rgb(236,235,235);
   margin-top: 5px;
+ 
 
 }
 
+.personalInfo-details .info a {
+  color: rgb(236,235,235);             
+  text-decoration: none;     
+}
+
+.personalInfo-details .info a:hover {
+  text-decoration: underline; 
+  color: #ccc;                
+}
 .personalInfo{
   position: relative;
   box-shadow: 1px 1px 4px 3px rgba(197,196,197, 0.479);
@@ -141,24 +153,33 @@ width: 100%;
   padding: 5px;
   background-color: rgb(9,93,119);
   border-radius: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .personalInfo-details{
   flex: 0 0 calc(68% - 10px);
-
+  padding: 5px;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .personalInfo-img{
   flex: 0 0 calc(32% - 10px);
-  display: block;
-  align-self: center;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .personalInfo-img img{
-width: 100%;
-border-radius: 5px;
-border:1px solid lightgray;
-padding: 5px;
+  max-width: 100%; 
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  box-sizing: border-box;
 
 }
 
