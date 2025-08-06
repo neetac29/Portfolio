@@ -315,11 +315,27 @@ line-height: 1.5;
   font-size: 18px;
 }
 
+.description {
+  white-space: pre-line;
+  line-height: 1.4rem;
+  color: #444;
+  margin-top: 8px;
+  
+}
+
+.description ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.description b {
+  font-weight: bold;
+}
+
 @media screen and (min-width: 664px) {
   .projects-center {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
 
   .single-project {
@@ -337,13 +353,6 @@ line-height: 1.5;
 }
 
 @media screen and (min-width: 964px) {
-  .projects-center {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
 
   .single-project {
     display: flex;
@@ -563,3 +572,7 @@ line-height: 1.5;
     }
     
    }
+
+
+   
+  

@@ -217,7 +217,10 @@ const ProjectsAdmin = () => {
 
                   <div className="single-project-info">
                     <h3>{item.title}</h3>
-                    <p>{item.description}</p>
+                    <div
+                      className="description"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    ></div>
                   </div>
                 </div>
 
