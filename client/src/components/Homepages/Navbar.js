@@ -48,7 +48,7 @@ const Navbar = () => {
 
   // clear local storage - enable login or should not have admin access
   const logOutSubmit = () => {
-    localStorage.removeItem('tokenStore');
+    localStorage.removeItem("tokenStore");
     setIsLogin(false);
   };
 

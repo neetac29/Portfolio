@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Edit.css";
 import axios from "axios";
-import API_BASE_URL from '../../config'
+import API_BASE_URL from "../../config";
 
 const EditAbout = (props) => {
   const [about, setAbout] = useState("");
@@ -23,26 +23,25 @@ const EditAbout = (props) => {
   // onchange
   const onchangeAbout = (e) => {
     setAbout(e.target.value);
-    // console.log("onchange about:::", about);
   };
 
   //update about
   const updateAbout = (e) => {
     e.preventDefault();
-    const payload = {about};
-    axios.put(`${API_BASE_URL}/about/update/${id}`, payload)
-    .then(res =>{
+    const payload = { about };
+    axios
+      .put(`${API_BASE_URL}/about/update/${id}`, payload)
+      .then((res) => {
         setMessage(res.data.msg);
+      })
+      .catch((err) => console.log(err));
 
-    })
-    .catch(err => console.log(err));
-
-    setAbout('');
+    setAbout("");
 
     setTimeout(() => {
-        navigate(`/admin`);
+      navigate(`/admin`);
     }, 1000);
-  }
+  };
 
   return (
     <div className="edit">

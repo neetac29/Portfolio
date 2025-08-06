@@ -98,7 +98,6 @@ const ProjectsAdmin = () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/project`);
       setProjectData(res.data);
-      //   console.log(res.data)
     } catch (err) {
       console.log(err);
     }

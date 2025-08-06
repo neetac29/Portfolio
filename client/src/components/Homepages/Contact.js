@@ -58,69 +58,69 @@ const Contact = () => {
   };
 
   return (
-      <div className="main-container">
-        <div className="contactForm">
-          <h2 className="title">Contact form</h2>
+    <div className="main-container">
+      <div className="contactForm">
+        <h2 className="title">Contact form</h2>
 
-          <div className="contactForm-center">
-            <div className="contact_form">
-              <form onSubmit={handleSubmitForm}>
-                <p>{banner}</p>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  placeholder="import name..."
-                  id="name"
-                  name="name"
-                  required
-                  value={name}
-                  onChange={handleNameChange}
-                />
+        <div className="contactForm-center">
+          <div className="contact_form">
+            <form onSubmit={handleSubmitForm}>
+              <p>{banner}</p>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                placeholder="Enter name..."
+                id="name"
+                name="name"
+                required
+                value={name}
+                onChange={handleNameChange}
+              />
 
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  placeholder="import email..."
-                  required
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                placeholder="Enter email..."
+                required
+                id="email"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
 
-                <label htmlFor="message">Message</label>
-                <textarea
-                  type="text"
-                  name="message"
-                  id=""
-                  placeholder="import contact reason..."
-                  value={message}
-                  onChange={handleMessageChange}
-                ></textarea>
+              <label htmlFor="message">Message</label>
+              <textarea
+                type="text"
+                name="message"
+                id=""
+                placeholder="Enter contact reason..."
+                value={message}
+                onChange={handleMessageChange}
+              ></textarea>
 
-                <div className="send-btn">
-                  <button type="submit">
-                    Send{" "}
-                    {boolean ? (
-                      <b className="load">
-                        <img src={load1} alt="" />
-                      </b>
-                    ) : (
-                      ""
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div className="send-btn">
+                <button type="submit">
+                  Send{" "}
+                  {boolean ? (
+                    <b className="load">
+                      <img src={load1} alt="" />
+                    </b>
+                  ) : (
+                    ""
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
 
-            {/* contact info */}
-            <div className="contact-info">
-              <h4>Send your message</h4>
-              <img src={BackImg} alt=" " />
-            </div>
+          {/* contact info */}
+          <div className="contact-info">
+            <h4>Send your message</h4>
+            <img src={BackImg} alt=" " />
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

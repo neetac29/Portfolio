@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API_BASE_URL from '../../config';
+import API_BASE_URL from "../../config";
 import { DataContext } from "../context/GlobalContext";
-
 
 const AboutAdmin = () => {
   const [about, setAbout] = useState("");
@@ -14,11 +13,8 @@ const AboutAdmin = () => {
   const state = useContext(DataContext);
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
-  
-
   const fetchData = async () => {
     const result = await axios.get(`${API_BASE_URL}/about`);
-    // console.log("result for about admin::", result.data);
     setAboutData(result.data);
   };
 
@@ -33,7 +29,6 @@ const AboutAdmin = () => {
   // onchange
   const onchangeAbout = (e) => {
     setAbout(e.target.value);
-    // console.log("onchange about:::", about);
   };
 
   // submit about
@@ -41,7 +36,7 @@ const AboutAdmin = () => {
     e.preventDefault();
 
     axios
-      .post( `${API_BASE_URL}/about`, { about })
+      .post(`${API_BASE_URL}/about`, { about })
       .then((res) => {
         console.log("Added");
         setAbout("");
@@ -62,7 +57,7 @@ const AboutAdmin = () => {
         setMessage(res.data.msg);
         setDataUpdated(true);
         setTimeout(() => {
-          setMessage('');
+          setMessage("");
           setMessageCond(false);
         }, 1000);
       })
@@ -90,20 +85,21 @@ const AboutAdmin = () => {
       </div>
 
       <div className="same-item">
-        {Array.isArray(aboutData) && aboutData.map((item) => (
-          <div className="about-info" key={item._id}>
-            <div className="icons">
-              <Link to={`/edit/${item._id}`}>
-                <i className="fas fa-edit"></i>
-              </Link>
-              <i
-                className="fas fa-trash"
-                onClick={() => deleteAbout(item._id)}
-              ></i>
+        {Array.isArray(aboutData) &&
+          aboutData.map((item) => (
+            <div className="about-info" key={item._id}>
+              <div className="icons">
+                <Link to={`/edit/${item._id}`}>
+                  <i className="fas fa-edit"></i>
+                </Link>
+                <i
+                  className="fas fa-trash"
+                  onClick={() => deleteAbout(item._id)}
+                ></i>
+              </div>
+              <p>{item.about}</p>
             </div>
-            <p>{item.about}</p>
-          </div>
-        ))}
+          ))}
 
         <h3
           className={

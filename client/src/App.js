@@ -66,9 +66,6 @@ function App() {
         <Route path="/editEducation/:id" element={<EditEducation />} />
         <Route path="/editProject/:id" element={<EditProjects />} />
         <Route path="/editExperience/:id" element={<EditExperience />} />
-
-        {/* Fallback Footer for all routes */}
-        {/* Remove this if Footer is already rendered inside the homepage */}
       </Routes>
       <Footer />
     </div>

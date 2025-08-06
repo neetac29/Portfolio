@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './Login.css';
-import axios from 'axios';
+import "./Login.css";
+import axios from "axios";
 import { DataContext } from "../context/GlobalContext";
 import API_BASE_URL from "../../config";
-import Register from './Register';
+import Register from "./Register"; //for admin use only
 
 const Login = () => {
-  const [user, setUser] = useState({ email: '', password: '' });
-  const [message, setMessage] = useState('');
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const state = useContext(DataContext);
@@ -19,7 +19,7 @@ const Login = () => {
   const onchangeInput = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    setMessage('');
+    setMessage("");
   };
 
   const loginSubmit = async (e) => {
@@ -28,22 +28,22 @@ const Login = () => {
     try {
       const res = await axios.post(`${API_BASE_URL}/user/login`, {
         email: user.email,
-        password: user.password
+        password: user.password,
       });
 
-      setUser({ email: '', password: '' });
+      setUser({ email: "", password: "" });
 
-      localStorage.setItem('tokenStore', res.data.token);
+      localStorage.setItem("tokenStore", res.data.token);
       setIsLogin(true);
 
       setMessage(res.data.msg);
-      navigate('/admin');
+      navigate("/admin");
     } catch (err) {
       console.error(err);
       if (err.response?.data?.msg) {
         setMessage(err.response.data.msg);
       } else {
-        setMessage('Login failed');
+        setMessage("Login failed");
       }
     } finally {
       setLoading(false);

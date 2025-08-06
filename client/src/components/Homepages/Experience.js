@@ -6,8 +6,7 @@ import API_BASE_URL from "../../config";
 const Experience = () => {
   const state = useContext(DataContext);
   const [experience, setExperience] = state.experience;
-  // console.log("experiencxe:::::", experience);
-  const [ dataUpdated, setDataUpdated] = state.dataUpdated;
+  const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
   const fetchAbout = async () => {
@@ -18,31 +17,31 @@ const Experience = () => {
       console.error("Error fetching about data:", err);
     }
   };
-  
-   // fetch once on mount
-    useEffect(() => {
+
+  // fetch once on mount
+  useEffect(() => {
+    fetchAbout();
+  }, []);
+
+  // fetch again if dataUpdated is triggered
+  useEffect(() => {
+    if (dataUpdated) {
       fetchAbout();
-    }, []);
-  
-    // fetch again if dataUpdated is triggered
-    useEffect(() => {
-      if (dataUpdated) {
-        fetchAbout();
-        setDataUpdated(false); // reset flag
-      }
-    }, [dataUpdated]);
-    
+      setDataUpdated(false); // reset flag
+    }
+  }, [dataUpdated]);
 
   return (
     <div className="main-container">
       <h2 className="title">Experience</h2>
       <div className="experience">
         <div className="experience-center">
-          {Array.isArray(experience) && experience.map((item) => (
-            <div className="single-experience" key={item._id}>
-              <p>{item.experience}</p>
-            </div>
-          ))}
+          {Array.isArray(experience) &&
+            experience.map((item) => (
+              <div className="single-experience" key={item._id}>
+                <p>{item.experience}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>

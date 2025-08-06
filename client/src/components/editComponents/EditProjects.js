@@ -13,7 +13,6 @@ const EditProjects = () => {
   const [product, setProducts] = useState(initialState);
   const [images, setImages] = useState(false);
   const [message, setMessage] = useState("");
-  const [imageFileName, setImageFileName] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   const fileInputRef = useRef();
@@ -31,10 +30,6 @@ const EditProjects = () => {
           title: res.data.title,
           description: res.data.description,
         });
-
-        // if (res.data.image) {
-        //   setImages(res.data.image);
-        // }
       })
       .catch((err) => {
         console.log(err);

@@ -6,8 +6,6 @@ import API_BASE_URL from "../../config";
 const Projects = () => {
   const state = useContext(DataContext);
   const [project, setProject] = state.project;
-  // console.log("project:::", project);
-
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
@@ -50,9 +48,9 @@ const Projects = () => {
                 <div className="single-project-info">
                   <h3>{item.title}</h3>
                   <div
-                      className="description"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    ></div>
+                    className="description"
+                    dangerouslySetInnerHTML={{ __html: item.description }}
+                  ></div>
                 </div>
               </div>
             ))}

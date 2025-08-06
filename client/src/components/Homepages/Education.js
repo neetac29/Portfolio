@@ -7,7 +7,6 @@ import API_BASE_URL from "../../config";
 const Education = () => {
   const state = useContext(DataContext);
   const [education, setEducation] = state.education;
-  // console.log("education::::",education);
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
@@ -34,20 +33,20 @@ const Education = () => {
   }, [dataUpdated]);
 
   return (
-      <div className="main-container">
-        <div className="education">
-          <h2 className="title">Education</h2>
+    <div className="main-container">
+      <div className="education">
+        <h2 className="title">Education</h2>
 
-          <div className="education-center">
-            {Array.isArray(education) &&
-              education.map((item) => (
-                <div className="single-education" key={item._id}>
-                  <p>{item.education}</p>
-                </div>
-              ))}
-          </div>
+        <div className="education-center">
+          {Array.isArray(education) &&
+            education.map((item) => (
+              <div className="single-education" key={item._id}>
+                <p>{item.education}</p>
+              </div>
+            ))}
         </div>
       </div>
+    </div>
   );
 };
 

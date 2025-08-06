@@ -1,4 +1,3 @@
-// client/src/config.js
 const isProd = process.env.NODE_ENV === "production";
 
 const API_BASE_URL = isProd

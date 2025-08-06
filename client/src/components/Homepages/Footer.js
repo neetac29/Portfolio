@@ -32,7 +32,7 @@ const Footer = () => {
 
   // clear local storage - enable login or should not have admin access
   const logOutSubmit = () => {
-    localStorage.removeItem('tokenStore');
+    localStorage.removeItem("tokenStore");
     setIsLogin(false);
   };
 
@@ -79,12 +79,11 @@ const Footer = () => {
                 )}
               </div>
             </div>
-
           </div>
         </div>
 
         <div className="footer">
-          <p>Designed and created by Neeta Chavan</p>
+          <p>Designed and created by Neeta Chavan 😊</p>
         </div>
       </div>
     </React.Fragment>

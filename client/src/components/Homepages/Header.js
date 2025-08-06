@@ -1,7 +1,6 @@
 import React from "react";
 import "../../App.css";
 import profile from "../../images/my_logo.jpeg";
-import Typewriter from "typewriter-effect";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import ResumePdf from "../../images/Neeta_Chavan_Resume.pdf";
@@ -81,7 +80,7 @@ const Header = () => {
           />
 
           <div className="fullName">
-            <CustomTypewriter/>
+            <CustomTypewriter />
           </div>
 
           <div className="cv">
