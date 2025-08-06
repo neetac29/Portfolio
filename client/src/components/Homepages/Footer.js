@@ -38,10 +38,6 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <div className="main-title">
-        <h2 className="title contact-title">Contact</h2>
-      </div>
-
       <div className="main-contact">
         <div className="contact">
           <div className="contact-center">
@@ -84,32 +80,11 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* media */}
-            <div className="contact-center-media">
-              <h3>Media</h3>
-              <div className="contact-media">
-                <li>
-                  <a href="#">
-                    <i className="fab fa-youtube-square"></i>Youtube
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-facebook-square"></i>Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-linkedin"></i>Linkedin
-                  </a>
-                </li>
-              </div>
-            </div>
           </div>
         </div>
 
         <div className="footer">
-          <p>Designed and created by codito 2020</p>
+          <p>Designed and created by Neeta Chavan</p>
         </div>
       </div>
     </React.Fragment>
