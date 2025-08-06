@@ -100,20 +100,25 @@ const Header = () => {
           <div className="personalInfo-details">
             {/* single info */}
             <div className="info">
-              <label htmlFor="name">Fullname:</label>
+              <label htmlFor="name">Name:</label>
               <h4>Neeta Chavan</h4>
             </div>
 
             {/* single info */}
             <div className="info">
               <label htmlFor="occupation">Occupation:</label>
-              <h4>Electronic-engineer, Software developer</h4>
+              <h4>Software Engineer</h4>
             </div>
 
             {/* single info */}
             <div className="info">
-              <label htmlFor="email">email:</label>
-              <h4>neetac@gmail.com</h4>
+              <label htmlFor="email">Email:</label>
+              <h4>neetapanditchavan29@gmail.com</h4>
+            </div>
+
+            <div className="info">
+              <label htmlFor="email">Contact:</label>
+              <h4>9921820217</h4>
             </div>
           </div>
 
