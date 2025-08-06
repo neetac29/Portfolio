@@ -1,97 +1,87 @@
-const aboutSchema = require('../models/aboutModels');
+const aboutSchema = require("../models/aboutModels");
 
-exports.getAbout = async(req, res) => {
-    //res.send('Hello from get about');
-    //using asynch await method
-//    try {
-//     const about = await aboutSchema.find();
-//     //console.log("about:::", about);
-//     res.json(about);
-//    } catch (error) {
-//     res.status(500).json({msg: 'Oops! Server Error'});
-//    }
+// GET all about entries
+exports.getAbout = async (req, res) => {
+  try {
+    const about = await aboutSchema.find();
+    if (!about || about.length === 0) {
+      return res.status(404).json({ msg: "No about content found" });
+    }
+    res.status(200).json(about);
+  } catch (error) {
+    console.error("Error fetching about data:", error);
+    res.status(500).json({ msg: "Server error: " + error.message });
+  }
+};
 
+// POST new about entry
+exports.addAbout = async (req, res) => {
+  const { about } = req.body;
 
+  if (!about || about.trim() === "") {
+    return res.status(400).json({ msg: "About field is required" });
+  }
 
-   //using promise method
-   aboutSchema.find()
-   .then(about => res.json(about))
-   .catch(err => res.status(400).json({msg:err}));
-}
+  try {
+    const newAbout = new aboutSchema({ about });
+    const savedAbout = await newAbout.save();
+    res.status(201).json(savedAbout);
+  } catch (error) {
+    console.error("Error adding about:", error);
+    res.status(500).json({ msg: "Server error: " + error.message });
+  }
+};
 
-exports.addAbout = async(req, res) => {
-    // res.send('Hello from add About');
-    const {about} = req.body;
-    //using asynch await method
-    // try {
-    //     const newAbout = new aboutSchema({about});
-    //     await newAbout.save();
-    //     res.json(newAbout);
-    // } catch (error) {
-    //     res.status(500).json({msg: 'Oops! Server Error'});
-    // }
-
-    //using promise method
-    const newAbout = new aboutSchema({about});
-    newAbout.save()
-    .then(about => res.json(about))
-    .catch(err => res.status(400).json({msg: err}));
-}
-
+// GET about entry by ID
 exports.getAboutById = async (req, res) => {
-    // res.send('Hello from get about  by id');
-    //using asynch await method
-    // try {
-    //     const about = await aboutSchema.findById(req.params.id)
-    //     res.json(about)
-    // } catch (error) {
-    //     res.status(500).json({msg: 'server error'})
-    // }
+  try {
+    const about = await aboutSchema.findById(req.params.id);
+    if (!about) {
+      return res.status(404).json({ msg: "About record not found" });
+    }
+    res.status(200).json(about);
+  } catch (error) {
+    console.error("Error fetching about by ID:", error);
+    res.status(500).json({ msg: "Server error: " + error.message });
+  }
+};
 
+// PUT update about by ID
+exports.updateAboutById = async (req, res) => {
+  const { about } = req.body;
 
-    //using promise method
-    aboutSchema.findById(req.params.id)
-    .then(about => res.json(about))
-    .catch(err => res.status(400).json({msg: err}));
-}
+  if (!about || about.trim() === "") {
+    return res.status(400).json({ msg: "About field is required" });
+  }
 
-exports.updateAboutById = async(req, res) => {
-    // res.send('Hello from update about  by id');
-    const {about} = req.body;
-    //using async await method
-    // try {
-    //     const newAbout = await aboutSchema.findByIdAndUpdate(req.params.id, {about});
-    //     let results = await newAbout.save();
-    //     await results;
-    //     res.json({msg: 'about is Updated!'})
-    // } catch (error) {
-    //     res.status(500).json({msg: 'server error'});
-    // }
+  try {
+    const updatedAbout = await aboutSchema.findByIdAndUpdate(
+      req.params.id,
+      { about },
+      { new: true }
+    );
 
+    if (!updatedAbout) {
+      return res.status(404).json({ msg: "About record not found" });
+    }
 
-    //using promise method
-    aboutSchema.findByIdAndUpdate(req.params.id, {about})
-    .then(about => {
-        if(!about) return res.status(400).status({msg: 'about not found'})
-        return about.save();
-    })
-    .then(() => res.json({msg: 'about is updated!'}))
-    .catch((err) => res.status(400).json({msg: err}))
-}
+    res.status(200).json({ msg: "Updated successfully", data: updatedAbout });
+  } catch (error) {
+    console.error("Error updating about:", error);
+    res.status(500).json({ msg: "Server error: " + error.message });
+  }
+};
 
+// DELETE about entry
 exports.deleteAbout = async (req, res) => {
-    // res.send('Hello from delete about ');
-
-    // using async await method
-    // try {
-    //     const about = await aboutSchema.findByIdAndDelete(req.params.id)
-    //     res.json({msg: 'about Deleted!'})
-    // } catch (error) {
-    //     res.status(500).json({msg:'server error'})
-    // }
-
-    // using promise method
-    aboutSchema.findByIdAndDelete(req.params.id)
-    .then(() => res.json({msg: 'about Deleted!'}))
-    .catch(err => res.json({msg:err}))
-}
+  try {
+    const deletedAbout = await aboutSchema.findByIdAndDelete(req.params.id);
+    if (!deletedAbout) {
+      return res.status(404).json({ msg: "About record not found" });
+    }
+    res.status(200).json({ msg: "Deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting about:", error);
+    res.status(500).json({ msg: "Server error: " + error.message });
+  }
+};

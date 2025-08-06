@@ -1,10 +1,16 @@
-const mongoose = require('mongoose') ;
+const mongoose = require("mongoose");
 
-const aboutSchema = new mongoose.Schema({
+const aboutSchema = new mongoose.Schema(
+  {
     about: {
-        type: String,
-        require: true
-    }
-})
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model('about', aboutSchema);
+module.exports = mongoose.model("About", aboutSchema);

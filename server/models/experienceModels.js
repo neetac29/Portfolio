@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
 const experienceSchema = new mongoose.Schema({
-    experience : {
-        type: String,
-        require: true
-    }
-})
+  experience: {
+    type: String,
+    required: true,  
+    trim: true       
+  }
+}, {
+  timestamps: true    
+});
 
-module.exports = mongoose.model('experience', experienceSchema);
+module.exports = mongoose.model('Experience', experienceSchema); 

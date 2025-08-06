@@ -1,22 +1,32 @@
-
 const router = require('express').Router();
-const { getExperience, addExperience, getExperienceById, updateExperience, deleteExperience } = require('../controllers/experienceCtrl');
+const {
+    getExperience,
+    addExperience,
+    getExperienceById,
+    updateExperience,
+    deleteExperience
+} = require('../controllers/experienceCtrl');
 
-// Experience routes
+// ========== Experience Routes ========== //
 
-// get experience
+// @route   GET /experience
+// @desc    Get all experience entries
 router.get('/experience', getExperience);
 
-//add experience
+// @route   POST /experience
+// @desc    Add a new experience entry
 router.post('/experience', addExperience);
 
-//get experience by id
+// @route   GET /experience/:id
+// @desc    Get a specific experience entry by ID
 router.get('/experience/:id', getExperienceById);
 
-//update experience
+// @route   PUT /experience/update/:id
+// @desc    Update a specific experience entry by ID
 router.put('/experience/update/:id', updateExperience);
 
-//delete experience
+// @route   DELETE /experience/:id
+// @desc    Delete a specific experience entry by ID
 router.delete('/experience/:id', deleteExperience);
 
-module.exports =router
+module.exports = router;

@@ -1,16 +1,57 @@
-# Ignore all node_modules and package-lock.json 
+# ========================
+# Node modules (server + client)
+# ========================
 node_modules/
 client/node_modules/
-client/package-lock.json/
 server/node_modules/
-server/package-lock.json/
 
-# Ignore environment files
+# ========================
+# Environment variables
+# ========================
 .env
 client/.env
 server/.env
 
-# Ignore build and logs
-dist/
+# ========================
+# Package lock files
+# ========================
+package-lock.json
+client/package-lock.json
+server/package-lock.json
+
+# ========================
+# Build / Dist folders
+# ========================
 build/
+client/build/
+server/build/
+dist/
+client/dist/
+server/dist/
+
+# ========================
+# Logs
+# ========================
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================
+# OS-specific files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# IDE files
+# ========================
+.vscode/
+.idea/
+
+# ========================
+# Temporary files
+# ========================
+*.tmp
+*.swp
+*.swo

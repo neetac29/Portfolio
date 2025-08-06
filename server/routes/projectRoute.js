@@ -1,22 +1,32 @@
-const { getProject, addProject, getProjectById, updateProject, deleteProject } = require('../controllers/projectCtrl');
-
 const router = require('express').Router();
+const {
+    getProject,
+    addProject,
+    getProjectById,
+    updateProject,
+    deleteProject
+} = require('../controllers/projectCtrl');
 
-//Project Routes
+// ========== Project Routes ========== //
 
-//get project
+// @route   GET /project
+// @desc    Get all projects
 router.get('/project', getProject);
 
-// add project
+// @route   POST /project
+// @desc    Add a new project
 router.post('/project', addProject);
 
-//get project by id
+// @route   GET /project/:id
+// @desc    Get a specific project by ID
 router.get('/project/:id', getProjectById);
 
-//update project
+// @route   PUT /project/update/:id
+// @desc    Update a specific project by ID
 router.put('/project/update/:id', updateProject);
 
-//delete project
+// @route   DELETE /project/:id
+// @desc    Delete a specific project by ID
 router.delete('/project/:id', deleteProject);
 
 module.exports = router;

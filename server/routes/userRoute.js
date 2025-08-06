@@ -1,14 +1,21 @@
 const router = require('express').Router();
-const {registerUser, loginUser, verifytoken} = require('../controllers/userCtrl');
-const auth = require('../middlewares/auth');
+const { registerUser, loginUser, verifytoken } = require('../controllers/userCtrl');
+const auth = require('../middlewares/auth'); // If you want to protect routes
 
-//Register
+// @route   POST /user/register
+// @desc    Register a new user
+// @access  Public
 router.post('/register', registerUser);
 
-//Login
+// @route   POST /user/login
+// @desc    Login user
+// @access  Public
 router.post('/login', loginUser);
 
-//Verify
-router.get('/verify',  verifytoken);
+// @route   GET /user/verify
+// @desc    Verify JWT token and return user info
+// @access  Protected
+router.get('/verify', verifytoken);  
+
 
 module.exports = router;

@@ -1,23 +1,32 @@
-const router = require('express').Router(); 
-const { getAbout, addAbout, getAboutById, updateAboutById, deleteAbout } = require('../controllers/aboutCtrl')
-/** About  */
+const router = require("express").Router();
+const {
+  getAbout,
+  addAbout,
+  getAboutById,
+  updateAboutById,
+  deleteAbout,
+} = require("../controllers/aboutCtrl");
 
-//import aboutSchema
-//const aboutSchema = require('../models/aboutModels');
+// ========== About Routes ========== //
 
-//get about 
-router.get('/about', getAbout);
+// @route   GET /about
+// @desc    Get all about entries
+router.get("/about", getAbout);
 
-// add about 
-router.post('/about', addAbout);
+// @route   POST /about
+// @desc    Add a new about entry
+router.post("/about", addAbout);
 
-//get specific about by id
-router.get('/about/:id', getAboutById)
+// @route   GET /about/:id
+// @desc    Get a specific about entry by ID
+router.get("/about/:id", getAboutById);
 
-// update specific about by id
-router.put('/about/update/:id', updateAboutById)
+// @route   PUT /about/update/:id
+// @desc    Update a specific about entry by ID
+router.put("/about/update/:id", updateAboutById);
 
-// delete specific about by id
-router.delete('/about/:id', deleteAbout)
+// @route   DELETE /about/:id
+// @desc    Delete a specific about entry by ID
+router.delete("/about/:id", deleteAbout);
 
-module.exports =router
+module.exports = router;
