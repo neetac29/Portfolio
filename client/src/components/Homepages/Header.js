@@ -4,7 +4,7 @@ import profile from "../../images/my_logo.jpeg";
 import Typewriter from "typewriter-effect";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-import resumePdf from "../../images/Resume.pdf";
+import ResumePdf from "../../images/Neeta_Chavan_Resume.pdf";
 import CustomTypewriter from "./CustomeTypewriter";
 
 const Header = () => {
@@ -87,7 +87,7 @@ const Header = () => {
           <div className="cv">
             <span>
               <b>Cv:</b>{" "}
-              <a href={resumePdf} download target="_blank" rel="noreferrer">
+              <a href={ResumePdf} download target="_blank" rel="noreferrer">
                 <i className="fas fa-file-pdf"></i>
               </a>
             </span>

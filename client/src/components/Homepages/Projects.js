@@ -1,8 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import logo from "../../images/cable.jpg";
-import arduino1 from "../../images/Arduino1.jpg";
-import panel from "../../images/panel.jpg";
-import tablet from "../../images/tablet.jpg";
 import { DataContext } from "../context/GlobalContext";
 import axios from "axios";
 import API_BASE_URL from "../../config";
