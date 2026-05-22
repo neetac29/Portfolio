@@ -52,13 +52,12 @@ const VisitorsAdmin = () => {
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            minWidth: "800px",
+            minWidth: "600px",
           }}
         >
           <thead>
             <tr>
               <th>IP Address</th>
-              <th>Browser / Device</th>
               <th>Page</th>
               <th>Visits</th>
               <th>Last Visit</th>
@@ -70,10 +69,6 @@ const VisitorsAdmin = () => {
               latestVisitors.map((visitor) => (
                 <tr key={visitor._id}>
                   <td>{visitor.ipAddress || "-"}</td>
-
-                  <td style={{ wordBreak: "break-word" }}>
-                    {visitor.browser || "-"}
-                  </td>
 
                   <td>{visitor.page || "-"}</td>
 
@@ -88,7 +83,7 @@ const VisitorsAdmin = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" style={{ textAlign: "center" }}>
+                <td colSpan="4" style={{ textAlign: "center" }}>
                   No visitors found
                 </td>
               </tr>
