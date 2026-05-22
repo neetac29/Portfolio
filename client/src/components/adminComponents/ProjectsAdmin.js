@@ -19,7 +19,7 @@ const ProjectsAdmin = () => {
   const fileInputRef = useRef();
 
   const state = useContext(DataContext);
-  const [dataUpdated, setDataUpdated] = state.dataUpdated;
+  const [, setDataUpdated] = state.dataUpdated;
 
   // upload image functionality
   const handleUpload = async (e) => {

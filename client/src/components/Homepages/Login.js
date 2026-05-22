@@ -4,7 +4,7 @@ import "./Login.css";
 import axios from "axios";
 import { DataContext } from "../context/GlobalContext";
 import API_BASE_URL from "../../config";
-import Register from "./Register"; //for admin use only
+// import Register from "./Register"; //for admin use only
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -12,7 +12,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const state = useContext(DataContext);
-  const [isLogin, setIsLogin] = state.isLogin;
+  const [, setIsLogin] = state.isLogin;
 
   const navigate = useNavigate();
 

@@ -19,7 +19,7 @@ const EditEducation = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   // onchange education
   const onchangeEducation = (e) => {

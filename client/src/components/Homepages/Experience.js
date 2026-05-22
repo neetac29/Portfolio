@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { DataContext } from "../context/GlobalContext";
 import axios from "axios";
 import API_BASE_URL from "../../config";
@@ -9,27 +9,27 @@ const Experience = () => {
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
-  const fetchAbout = async () => {
+  const fetchExperience = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/experience`);
       setExperience(res.data);
     } catch (err) {
-      console.error("Error fetching about data:", err);
+      console.error("Error fetching experience data:", err);
     }
-  };
+  }, [setExperience]);
 
   // fetch once on mount
   useEffect(() => {
-    fetchAbout();
-  }, []);
+    fetchExperience();
+  }, [fetchExperience]);
 
   // fetch again if dataUpdated is triggered
   useEffect(() => {
     if (dataUpdated) {
-      fetchAbout();
-      setDataUpdated(false); // reset flag
+      fetchExperience();
+      setDataUpdated(false);
     }
-  }, [dataUpdated]);
+  }, [dataUpdated, fetchExperience, setDataUpdated]);
 
   return (
     <div className="main-container">

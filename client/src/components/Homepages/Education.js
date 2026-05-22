@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 
 import { DataContext } from "../context/GlobalContext";
 import axios from "axios";
@@ -10,27 +10,27 @@ const Education = () => {
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
-  const fetchAbout = async () => {
+  const fetchEducation = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/education`);
       setEducation(res.data);
     } catch (err) {
-      console.error("Error fetching about data:", err);
+      console.error("Error fetching education data:", err);
     }
-  };
+  }, [setEducation]);
 
   // fetch once on mount
   useEffect(() => {
-    fetchAbout();
-  }, []);
-
-  // fetch again if dataUpdated is triggered
+    fetchEducation();
+  }, [fetchEducation]);
+  
   useEffect(() => {
     if (dataUpdated) {
-      fetchAbout();
-      setDataUpdated(false); // reset flag
+      fetchEducation();
+      setDataUpdated(false);
     }
-  }, [dataUpdated]);
+  }, [dataUpdated, fetchEducation, setDataUpdated]);
+
 
   return (
     <div className="main-container">

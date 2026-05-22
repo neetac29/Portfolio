@@ -11,7 +11,7 @@ const AboutAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   const state = useContext(DataContext);
-  const [dataUpdated, setDataUpdated] = state.dataUpdated;
+  const [, setDataUpdated] = state.dataUpdated;
 
   const fetchData = async () => {
     const result = await axios.get(`${API_BASE_URL}/about`);
@@ -102,9 +102,9 @@ const AboutAdmin = () => {
           ))}
 
         <h3
-          className={
-            setMessageCond ? "new-delete item-delete-tab" : "item-delete-tab"
-          }
+         className={
+          messageCond ? "new-delete item-delete-tab" : "item-delete-tab"
+        }
         >
           {message}
         </h3>

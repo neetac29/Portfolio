@@ -24,7 +24,7 @@ import { DataContext } from "./components/context/GlobalContext";
 
 function App() {
   const state = useContext(DataContext);
-  const [isLogin, setIsLogin] = state.isLogin;
+  const [, setIsLogin] = state.isLogin;
 
   return (
     <div className="App">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { DataContext } from "../context/GlobalContext";
 import axios from "axios";
 import API_BASE_URL from "../../config";
@@ -9,27 +9,27 @@ const Projects = () => {
   const [dataUpdated, setDataUpdated] = state.dataUpdated;
 
   // fetch latest about data
-  const fetchAbout = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/project`);
       setProject(res.data);
     } catch (err) {
-      console.error("Error fetching about data:", err);
+      console.error("Error fetching project data:", err);
     }
-  };
+  }, [setProject]);
 
   // fetch once on mount
-  useEffect(() => {
-    fetchAbout();
-  }, []);
+ useEffect(() => {
+  fetchProjects();
+}, [fetchProjects]);;
 
   // fetch again if dataUpdated is triggered
   useEffect(() => {
     if (dataUpdated) {
-      fetchAbout();
-      setDataUpdated(false); // reset flag
+      fetchProjects();
+      setDataUpdated(false);
     }
-  }, [dataUpdated]);
+  }, [dataUpdated, fetchProjects, setDataUpdated]);
 
   return (
     <div className="main-container">

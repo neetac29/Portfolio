@@ -11,7 +11,7 @@ const EducationAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   const state = useContext(DataContext);
-  const [dataUpdated, setDataUpdated] = state.dataUpdated;
+  const [, setDataUpdated] = state.dataUpdated;
 
   // fetching education data
   const fetchData = async () => {

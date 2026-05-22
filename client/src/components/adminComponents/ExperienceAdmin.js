@@ -12,7 +12,7 @@ const ExperienceAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   const state = useContext(DataContext);
-  const [dataUpdated, setDataUpdated] = state.dataUpdated;
+  const [, setDataUpdated] = state.dataUpdated;
 
   // fetch experience data
   const fetchData = async () => {

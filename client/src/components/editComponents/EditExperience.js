@@ -18,7 +18,7 @@ const EditExperience = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   // onchange experince
   const onchangeExperience = (e) => {
