@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import api from "../../utils/api";
-import axios from "axios";
 
 export const DataContext = createContext();
 
@@ -16,20 +15,23 @@ export const DataProvider = ({ children }) => {
   const checkLogin = async () => {
     const token = localStorage.getItem("tokenStore");
 
-    if (token) {
-      const verified = await axios.get(`/user/verify`, {
+    if (!token) {
+      setIsLogin(false);
+      return;
+    }
+
+    try {
+      await api.get("/user/verify", {
         headers: {
           Authorization: token,
         },
       });
-      console.log("verified:::", verified);
-      setIsLogin(verified.data);
 
-      if (verified.data === false) {
-        return localStorage.clear();
-      } else {
-        setIsLogin(false);
-      }
+      setIsLogin(true);
+    } catch (err) {
+      console.error("Token verification failed:", err);
+      localStorage.removeItem("tokenStore");
+      setIsLogin(false);
     }
   };
 

@@ -4,6 +4,7 @@ import AboutAdmin from "./AboutAdmin";
 import EducationAdmin from "./EducationAdmin";
 import ExperienceAdmin from "./ExperienceAdmin";
 import ProjectsAdmin from "./ProjectsAdmin";
+import VisitorsAdmin from "./VisitorsAdmin";
 
 const Admin = () => {
   return (
@@ -51,6 +52,18 @@ const Admin = () => {
 
         {/* end of Experience Admin component */}
 
+        <br />
+
+        {/* Visitors Admin component */}
+
+        <br />
+        <br />
+        <hr style={{ border: "1px solid lightgray" }} />
+
+        <h4 className="admin-title">Visitors Component</h4>
+        <VisitorsAdmin />
+
+        {/* end of Visitors Admin component */}
         <br />
       </div>
     </div>

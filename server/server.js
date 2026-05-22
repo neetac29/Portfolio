@@ -21,6 +21,7 @@ app.use(express.json());  // is a line of middleware in an Express.js applicatio
  Converts the JSON string in the body into a JavaScript object
 
  Stores it in req.body */
+app.use("/", require("./routes/visitorRoute"));
 app.use(express.urlencoded({ extended: true })); // for forms
 
 app.use(cors({
