@@ -540,3 +540,29 @@ a {
     margin-left: 50%;
   }
 }
+
+
+.visitor-table-wrapper {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.visitor-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.visitor-table th,
+.visitor-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  word-break: break-word;
+}
+
+.visitor-table th {
+  background: #f2f2f2;
+  position: sticky;
+  top: 0;
+}

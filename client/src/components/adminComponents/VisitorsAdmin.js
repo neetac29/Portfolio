@@ -11,13 +11,17 @@ const VisitorsAdmin = () => {
     const fetchVisitors = async () => {
       try {
         const token = localStorage.getItem("tokenStore");
+
         const res = await api.get("/visitor", {
-          headers: { Authorization: token },
+          headers: {
+            Authorization: token,
+          },
         });
 
         setVisitors(res.data.visitors || []);
         setUniqueVisitors(res.data.uniqueVisitors || 0);
         setTotalVisits(res.data.totalVisits || 0);
+        setError("");
       } catch (err) {
         console.log(err);
         setError(err?.response?.data?.msg || "Unable to load visitors");
@@ -27,46 +31,77 @@ const VisitorsAdmin = () => {
     fetchVisitors();
   }, []);
 
-  return (
-    <div>
-      {/* <h4 className="admin-title">Visitors Analytics</h4> */}
+  const latestVisitors = visitors.slice(0, 5);
 
+  return (
+    <div className="visitors-admin">
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <p>
         <strong>Unique Visitors:</strong> {uniqueVisitors}
       </p>
+
       <p>
         <strong>Total Visits:</strong> {totalVisits}
       </p>
 
-      <table border="1" cellPadding="8" style={{ width: "100%" }}>
-        <thead>
-          <tr>
-            <th>IP Address</th>
-            <th>Browser</th>
-            <th>Page</th>
-            <th>Visits</th>
-            <th>Last Visit</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {visitors.map((visitor) => (
-            <tr key={visitor._id}>
-              <td>{visitor.ipAddress}</td>
-
-              <td>{visitor.browser}</td>
-
-              <td>{visitor.page}</td>
-
-              <td>{visitor.visitCount}</td>
-
-              <td>{new Date(visitor.lastVisitedAt).toLocaleString()}</td>
+      <div style={{ overflowX: "auto", maxHeight: "350px", overflowY: "auto" }}>
+        <table
+          border="1"
+          cellPadding="8"
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            minWidth: "800px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>IP Address</th>
+              <th>Browser / Device</th>
+              <th>Page</th>
+              <th>Visits</th>
+              <th>Last Visit</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {latestVisitors.length > 0 ? (
+              latestVisitors.map((visitor) => (
+                <tr key={visitor._id}>
+                  <td>{visitor.ipAddress || "-"}</td>
+
+                  <td style={{ wordBreak: "break-word" }}>
+                    {visitor.browser || "-"}
+                  </td>
+
+                  <td>{visitor.page || "-"}</td>
+
+                  <td>{visitor.visitCount || 0}</td>
+
+                  <td>
+                    {visitor.lastVisitedAt
+                      ? new Date(visitor.lastVisitedAt).toLocaleString()
+                      : "-"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  No visitors found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {visitors.length > 5 && (
+        <p style={{ marginTop: "8px", fontSize: "14px" }}>
+          Showing latest 5 visitors only.
+        </p>
+      )}
     </div>
   );
 };
