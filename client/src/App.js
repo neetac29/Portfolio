@@ -30,14 +30,23 @@ function App() {
   useEffect(() => {
     const trackVisit = async () => {
       try {
+        let visitorId = localStorage.getItem("visitorId");
+  
+        if (!visitorId) {
+          visitorId =
+            Date.now().toString(36) + Math.random().toString(36).substring(2);
+          localStorage.setItem("visitorId", visitorId);
+        }
+  
         await api.post("/visitor/track", {
+          visitorId,
           page: window.location.pathname,
         });
       } catch (err) {
         console.log("Visitor tracking failed", err);
       }
     };
-
+  
     trackVisit();
   }, []);
 

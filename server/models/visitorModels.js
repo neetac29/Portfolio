@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 
 const visitorSchema = new mongoose.Schema(
   {
+    visitorId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    
     ipAddress: {
       type: String,
       required: true,

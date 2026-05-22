@@ -10,25 +10,32 @@ const getClientIp = (req) => {
 
 exports.trackVisit = async (req, res) => {
   try {
-    const ipAddress = getClientIp(req);
+    const ipAddress =
+      req.headers["x-forwarded-for"]?.split(",")[0] ||
+      req.socket.remoteAddress ||
+      "Unknown IP";
 
     const browser = req.headers["user-agent"] || "Unknown Browser";
-
     const page = req.body.page || "/";
+    const visitorId = req.body.visitorId;
+
+    if (!visitorId) {
+      return res.status(400).json({
+        msg: "Visitor ID is required",
+      });
+    }
 
     const visitor = await Visitor.findOneAndUpdate(
+      { visitorId },
       {
-        ipAddress,
-        browser,
-      },
-      {
-        $inc: {
-          visitCount: 1,
-        },
-
         $set: {
+          ipAddress,
+          browser,
           page,
           lastVisitedAt: new Date(),
+        },
+        $inc: {
+          visitCount: 1,
         },
       },
       {
