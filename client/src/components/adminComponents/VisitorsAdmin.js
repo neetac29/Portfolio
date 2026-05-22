@@ -36,25 +36,19 @@ const VisitorsAdmin = () => {
   return (
     <div className="visitors-admin">
       {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <p>
-        <strong>Unique Visitors:</strong> {uniqueVisitors}
-      </p>
-
-      <p>
-        <strong>Total Visits:</strong> {totalVisits}
-      </p>
-
-      <div style={{ overflowX: "auto", maxHeight: "350px", overflowY: "auto" }}>
-        <table
-          border="1"
-          cellPadding="8"
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            minWidth: "600px",
-          }}
-        >
+  
+      <div className="visitor-stats">
+        <div className="visitor-card">
+          Unique Visitors: {uniqueVisitors}
+        </div>
+  
+        <div className="visitor-card">
+          Total Visits: {totalVisits}
+        </div>
+      </div>
+  
+      <div className="visitor-table-wrapper">
+        <table className="visitor-table">
           <thead>
             <tr>
               <th>IP Address</th>
@@ -63,17 +57,17 @@ const VisitorsAdmin = () => {
               <th>Last Visit</th>
             </tr>
           </thead>
-
+  
           <tbody>
             {latestVisitors.length > 0 ? (
               latestVisitors.map((visitor) => (
                 <tr key={visitor._id}>
                   <td>{visitor.ipAddress || "-"}</td>
-
+  
                   <td>{visitor.page || "-"}</td>
-
+  
                   <td>{visitor.visitCount || 0}</td>
-
+  
                   <td>
                     {visitor.lastVisitedAt
                       ? new Date(visitor.lastVisitedAt).toLocaleString()
@@ -83,7 +77,7 @@ const VisitorsAdmin = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" style={{ textAlign: "center" }}>
+                <td colSpan="4" className="no-visitors">
                   No visitors found
                 </td>
               </tr>
@@ -91,12 +85,6 @@ const VisitorsAdmin = () => {
           </tbody>
         </table>
       </div>
-
-      {visitors.length > 5 && (
-        <p style={{ marginTop: "8px", fontSize: "14px" }}>
-          Showing latest 5 visitors only.
-        </p>
-      )}
     </div>
   );
 };
