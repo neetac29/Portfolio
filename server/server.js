@@ -87,6 +87,11 @@ app.use((req, res, next) => {
     next();
 }); 
 
+// health API 
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
 
 app.listen(PORT, ()=> {
     console.log(`server listening on port: ${PORT}`);
