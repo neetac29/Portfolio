@@ -1,4 +1,4 @@
-const Visitor = require("../models/visitorModel");
+const Visitor = require("../models/visitorModels");
 
 const getClientIp = (req) => {
   return (
