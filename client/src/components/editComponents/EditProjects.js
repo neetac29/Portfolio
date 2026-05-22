@@ -34,7 +34,7 @@ const EditProjects = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   // upload image functionality
 

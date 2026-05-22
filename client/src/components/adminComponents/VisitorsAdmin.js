@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../../utils/api";
-import axios from "axios";
 
 const VisitorsAdmin = () => {
   const [visitors, setVisitors] = useState([]);

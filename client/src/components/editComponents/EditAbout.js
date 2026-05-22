@@ -18,7 +18,7 @@ const EditAbout = (props) => {
         setAbout(res.data.about);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   // onchange
   const onchangeAbout = (e) => {
