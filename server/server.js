@@ -21,13 +21,14 @@ app.use(express.json());  // is a line of middleware in an Express.js applicatio
  Converts the JSON string in the body into a JavaScript object
 
  Stores it in req.body */
-app.use("/", require("./routes/visitorRoute"));
+
 app.use(express.urlencoded({ extended: true })); // for forms
 
 app.use(cors({
     origin: ['http://localhost:3000', 'https://neetachavan-dev.vercel.app'], // replace with your actual frontend URLs
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
   }));  /** This line tells your Express app to use the cors middleware (from the cors package).
 
 It enables all origins (*) by default, meaning any frontend or client can access your API. */
@@ -67,6 +68,7 @@ app.use('/user', require('./routes/userRoute'));
 app.use('/', require('./routes/projectRoute'));
 app.use('/', require('./routes/uploadRoute'));
 app.use('/contact', require('./routes/contactRoute'));
+app.use("/", require("./routes/visitorRoute"));
 
 
 // Error-handling middleware
