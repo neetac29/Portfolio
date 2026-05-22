@@ -6,13 +6,22 @@ const visitorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    browser: String,
-    device: String,
-    page: String,
+
+    browser: {
+      type: String,
+      default: "Unknown Browser",
+    },
+
+    page: {
+      type: String,
+      default: "/",
+    },
+
     visitCount: {
       type: Number,
       default: 1,
     },
+
     lastVisitedAt: {
       type: Date,
       default: Date.now,

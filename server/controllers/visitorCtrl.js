@@ -1,4 +1,4 @@
-const Visitor = require("../models/visitorModels");
+const Visitor = require("../models/visitorModel");
 
 const getClientIp = (req) => {
   return (
@@ -11,18 +11,24 @@ const getClientIp = (req) => {
 exports.trackVisit = async (req, res) => {
   try {
     const ipAddress = getClientIp(req);
+
     const browser = req.headers["user-agent"] || "Unknown Browser";
+
     const page = req.body.page || "/";
 
     const visitor = await Visitor.findOneAndUpdate(
-      { ipAddress, browser },
       {
+        ipAddress,
+        browser,
+      },
+      {
+        $inc: {
+          visitCount: 1,
+        },
+
         $set: {
           page,
           lastVisitedAt: new Date(),
-        },
-        $inc: {
-          visitCount: 1,
         },
       },
       {
@@ -35,9 +41,8 @@ exports.trackVisit = async (req, res) => {
       success: true,
       visitor,
     });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      success: false,
       msg: "Unable to track visitor",
     });
   }
@@ -45,10 +50,12 @@ exports.trackVisit = async (req, res) => {
 
 exports.getVisitors = async (req, res) => {
   try {
-    const visitors = await Visitor.find().sort({ lastVisitedAt: -1 });
+    const visitors = await Visitor.find().sort({
+      lastVisitedAt: -1,
+    });
 
     const totalVisits = visitors.reduce(
-      (sum, visitor) => sum + visitor.visitCount,
+      (sum, item) => sum + item.visitCount,
       0
     );
 
@@ -57,7 +64,7 @@ exports.getVisitors = async (req, res) => {
       uniqueVisitors: visitors.length,
       totalVisits,
     });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
       msg: "Unable to load visitors",
     });

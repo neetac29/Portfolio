@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./App.css";
 
 import Header from "./components/Homepages/Header";
@@ -21,10 +21,25 @@ import EditExperience from "./components/editComponents/EditExperience";
 import { Route, Routes } from "react-router-dom";
 import { Element } from "react-scroll";
 import { DataContext } from "./components/context/GlobalContext";
+import api from './utils/api';
 
 function App() {
   const state = useContext(DataContext);
   const [, setIsLogin] = state.isLogin;
+
+  useEffect(() => {
+    const trackVisit = async () => {
+      try {
+        await api.post("/visitor/track", {
+          page: window.location.pathname,
+        });
+      } catch (err) {
+        console.log("Visitor tracking failed", err);
+      }
+    };
+
+    trackVisit();
+  }, []);
 
   return (
     <div className="App">

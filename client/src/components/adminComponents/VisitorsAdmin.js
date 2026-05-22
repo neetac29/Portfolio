@@ -40,15 +40,11 @@ const VisitorsAdmin = () => {
         <strong>Total Visits:</strong> {totalVisits}
       </p>
 
-      <table
-        border="1"
-        cellPadding="8"
-        style={{ width: "100%", borderCollapse: "collapse" }}
-      >
+      <table border="1" cellPadding="8" style={{ width: "100%" }}>
         <thead>
           <tr>
             <th>IP Address</th>
-            <th>Browser / Device</th>
+            <th>Browser</th>
             <th>Page</th>
             <th>Visits</th>
             <th>Last Visit</th>
@@ -66,11 +62,7 @@ const VisitorsAdmin = () => {
 
               <td>{visitor.visitCount}</td>
 
-              <td>
-                {visitor.lastVisitedAt
-                  ? new Date(visitor.lastVisitedAt).toLocaleString()
-                  : "-"}
-              </td>
+              <td>{new Date(visitor.lastVisitedAt).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>
