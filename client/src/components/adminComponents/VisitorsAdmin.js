@@ -31,23 +31,25 @@ const VisitorsAdmin = () => {
     fetchVisitors();
   }, []);
 
-  const latestVisitors = visitors.slice(0, 5);
+  // const latestVisitors = visitors.slice(0, 5);
 
   return (
     <div className="visitors-admin">
       {error && <p style={{ color: "red" }}>{error}</p>}
-  
+
       <div className="visitor-stats">
-        <div className="visitor-card">
-          Unique Visitors: {uniqueVisitors}
-        </div>
-  
-        <div className="visitor-card">
-          Total Visits: {totalVisits}
-        </div>
+        <div className="visitor-card">Unique Visitors: {uniqueVisitors}</div>
+
+        <div className="visitor-card">Total Visits: {totalVisits}</div>
       </div>
-  
-      <div className="visitor-table-wrapper">
+
+      <div
+        className="visitor-table-wrapper"
+        style={{
+          maxHeight: visitors.length > 5 ? "400px" : "auto",
+          overflowY: visitors.length > 5 ? "auto" : "visible",
+        }}
+      >
         <table className="visitor-table">
           <thead>
             <tr>
@@ -57,17 +59,17 @@ const VisitorsAdmin = () => {
               <th>Last Visit</th>
             </tr>
           </thead>
-  
+
           <tbody>
-            {latestVisitors.length > 0 ? (
-              latestVisitors.map((visitor) => (
+            {visitors.length > 0 ? (
+              visitors.map((visitor) => (
                 <tr key={visitor._id}>
                   <td>{visitor.ipAddress || "-"}</td>
-  
+
                   <td>{visitor.page || "-"}</td>
-  
+
                   <td>{visitor.visitCount || 0}</td>
-  
+
                   <td>
                     {visitor.lastVisitedAt
                       ? new Date(visitor.lastVisitedAt).toLocaleString()
